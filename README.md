@@ -74,7 +74,7 @@ Open the local URL printed by Streamlit. The dashboard also provides a CSV downl
 
 Streamlit's [deployment guide](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy), [file organization guide](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/file-organization), and [dependency guide](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies) describe the current flow.
 
-**Live dashboard:** Pending deployment and public URL verification.
+**Live dashboard:** [ab-testing-himanshi.streamlit.app](https://ab-testing-himanshi.streamlit.app/) — deployed and publicly verified on October 8, 2026.
 
 ## Methods and limitations
 

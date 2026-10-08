@@ -129,7 +129,7 @@ with overview:
             {"Metric": "Activation · 7d", "Control": pct(r['secondary'].control_rate),
              "Treatment": pct(r['secondary'].treatment_rate), "Difference": pp(r['secondary'].effect)},
             {"Metric": "Revenue / assigned user", "Control": f"${r['revenue']['control_mean']:.2f}",
-             "Treatment": f"${r['revenue']['treatment_mean']:.2f}", "Difference": f"${r['revenue']['effect']:+.2f}"},
+             "Treatment": f"${r['revenue']['treatment_mean']:.2f}", "Difference": f"+${r['revenue']['effect']:.2f}"},
             *[{"Metric": k.replace('_14d', '').replace('_', ' ').title() + " · 14d",
                "Control": pct(v.control_rate), "Treatment": pct(v.treatment_rate),
                "Difference": pp(v.effect)} for k, v in r["guardrails"].items()],
