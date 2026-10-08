@@ -71,7 +71,7 @@ def base_chart(fig, height=360):
                       xaxis=dict(gridcolor="#254056", zerolinecolor="#406074"),
                       yaxis=dict(gridcolor="#254056", zerolinecolor="#406074"),
                       legend=dict(orientation="h", y=1.12, x=0))
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 
 df = load_data()
@@ -91,7 +91,7 @@ with st.sidebar:
     st.info("Portfolio case study. All user records are **synthetic** and reproducible with a fixed random seed.")
     st.download_button("Download experiment CSV", df.to_csv(index=False),
                        file_name="synthetic_experiment_users.csv", mime="text/csv",
-                       use_container_width=True)
+                       width="stretch")
 
 st.markdown('<div class="eyebrow">Experiment readout / 01</div>', unsafe_allow_html=True)
 st.markdown('<h1 class="hero">Does guided onboarding<br>turn more users into customers?</h1>', unsafe_allow_html=True)
@@ -134,7 +134,7 @@ with overview:
                "Control": pct(v.control_rate), "Treatment": pct(v.treatment_rate),
                "Difference": pp(v.effect)} for k, v in r["guardrails"].items()],
         ])
-        st.dataframe(summary, hide_index=True, use_container_width=True)
+        st.dataframe(summary, hide_index=True, width="stretch")
         st.markdown("**Current recommendation**")
         st.markdown('<div class="callout"><strong>Hold rollout and investigate crashes.</strong><br>'
                     'Conversion improves, but the crash rate upper confidence bound exceeds the predeclared '
@@ -163,7 +163,7 @@ with integrity:
     balance_table["control_share"] = balance_table.control_share.map(lambda x: f"{x:.1%}")
     balance_table["treatment_share"] = balance_table.treatment_share.map(lambda x: f"{x:.1%}")
     balance_table["smd"] = balance_table.smd.map(lambda x: f"{x:+.3f}")
-    st.dataframe(balance_table, hide_index=True, use_container_width=True)
+    st.dataframe(balance_table, hide_index=True, width="stretch")
 
 with segments:
     st.subheader("Who responded to the change?")
@@ -189,7 +189,7 @@ with segments:
     for col in ["control_rate", "treatment_rate"]: display[col] = display[col].map(lambda x: f"{x:.2%}")
     display["effect"] = display.effect.map(pp)
     for col in ["p_value", "q_value_bh"]: display[col] = display[col].map(lambda x: f"{x:.3g}")
-    st.dataframe(display, hide_index=True, use_container_width=True)
+    st.dataframe(display, hide_index=True, width="stretch")
 
     st.markdown("#### Assignment cohorts")
     cohorts = df.groupby(["assigned_at", "variant"]).paid_14d.agg(["mean", "size"]).reset_index()
@@ -216,7 +216,7 @@ with decision:
            f"upper CI {v.ci_high*100:+.2f} pp vs margin {GUARDRAILS[k]*100:.2f} pp",
            "Pass" if r["guardrail_pass"][k] else "Fail"] for k, v in r["guardrails"].items()],
     ], columns=["Gate", "Observed", "Status"])
-    st.dataframe(checks, hide_index=True, use_container_width=True)
+    st.dataframe(checks, hide_index=True, width="stretch")
     st.markdown('<div class="callout"><strong>Recommendation: HOLD.</strong> Instrument and reproduce the '
                 'crash increase by device and app version. Fix the issue, then run a new, powered confirmation test. '
                 'Do not declare a win from conversion alone.</div>', unsafe_allow_html=True)
